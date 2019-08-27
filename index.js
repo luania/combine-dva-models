@@ -23,6 +23,8 @@ const combineModels = (...models) =>
     }
   }), {} );
 
-export createSingleStateModel;
-export createSwitchModel;
-export combineModels;
+export {
+    createSingleStateModel,
+    createSwitchModel,
+    combineModels,
+};

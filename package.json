@@ -1,6 +1,6 @@
 {
   "name": "combine-dva-models",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "combine dva models",
   "main": "index.js",
   "keywords": [
