@@ -1,12 +1,12 @@
-const createSingleStateModel = (name, initValue) => {
+const createSingleStateModel = (name, initValue) => ({
   state: {
     [name]: initValue
   },
   reducers: {
-    `${name}Change`: (state, action) => ({
+    [`${name}Change`]: (state, action) => ({
       ...state,
       [name]: action[name]
     })
   }
-};
+});
 export default createSingleStateModel;
