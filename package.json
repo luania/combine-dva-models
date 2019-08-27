@@ -1,6 +1,6 @@
 {
   "name": "combine-dva-models",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "combine dva models",
   "main": "index.js",
   "keywords": [
@@ -16,7 +16,7 @@
     "url": "git+https://github.com/luania/combine-dva-models.git"
   },
   "author": "luania",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/luania/combine-dva-models/issues"
   },
