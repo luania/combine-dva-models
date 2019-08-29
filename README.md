@@ -1,13 +1,14 @@
 # combine-dva-models
+
 combine dva models
 
 ## Usage：
 
 ### combineModels
 
-we hava some models like this:
-
 ```javascript
+import { combineModels } from "combine-dva-models";
+
 const modelLoading = {
   state: {
     loading: false
@@ -30,24 +31,18 @@ const modelSubmitting = {
     })
   }
 };
-```
 
-combine then:
-
-```javascript
-import { combineModels } from 'combine-dva-models';
-
-const totalModel = combineModels(
+const fooModel = combineModels(
   modelLoading,
   modelSubmitting,
   { namespace: "foo" } // 指定一下namespace
 );
 ```
 
-now you get a combined model:
+is equivalent to
 
 ```javascript
-{
+const fooModel {
   namespace: "foo",
   state: {
     loading: false,
@@ -66,35 +61,65 @@ now you get a combined model:
 };
 ```
 
-### createSingleStateModel(name, initValue)
+### modelSingle(name, initValue)
 
 ```javascript
-import { createSingleStateModel } from 'combine-dva-models';
-const countModel = createSingleStateModel('count', 0);
+import { modelSingle } from "combine-dva-models";
+const countModel = modelSingle("count", 0);
+```
 
-// is equivalent to
+is equivalent to
 
+```javascript
+const initCount = 0;
 const countModel = {
   state: {
-    count: 0
+    count: initCount
   },
   reducers: {
     countChange: (state, action) => ({
       ...state,
       count: action.count
+    }),
+    countReset: state => ({
+      ...state,
+      count: initCount
     })
   }
 };
 ```
 
-### createSwitchModel(name, initValue = false)
+### dispatchesSingle(namespace, name)
 
 ```javascript
-import { createSwitchModel } from 'combine-dva-models';
-const loadingModel = createSwitchModel('loading');
+import { dispatchesSingle } from "combine-dva-models";
+const dispaches = dispatchesSingle("foo", "count");
+```
 
-// is equivalent to
+is equivalent to
 
+```javascript
+const dispaches = {
+  countChange: value => ({
+    type: "foo/countChange",
+    count: value
+  }),
+  countReset: value => ({
+    type: "foo/countReset"
+  })
+};
+```
+
+### modelSwitch(name, initValue = false)
+
+```javascript
+import { modelSwitch } from "combine-dva-models";
+const loadingModel = modelSwitch("loading");
+```
+
+is equivalent to
+
+```javascript
 const countModel = {
   state: {
     loading: 0
@@ -109,5 +134,25 @@ const countModel = {
       loading: false
     })
   }
+};
+```
+
+### dispatchesSwitch(namespace, name)
+
+```javascript
+import { dispatchesSwitch } from "combine-dva-models";
+const dispaches = dispatchesSwitch("foo", "loading");
+```
+
+is equivalent to
+
+```javascript
+const dispaches = {
+  loadingOn: () => ({
+    type: "foo/loadingOn"
+  }),
+  loadingOff: () => ({
+    type: "foo/loadingOff"
+  })
 };
 ```

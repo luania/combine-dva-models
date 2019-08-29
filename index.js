@@ -1,30 +1,11 @@
-import createSingleStateModel from './src/createSingleStateModel';
-import createSwitchModel from './src/createSwitchModel';
-
-const combineModels = (...models) =>
-  models.reduce((sum, item) => ({
-    ...sum,
-    ...item,
-    state: {
-      ...sum.state,
-      ...item.state
-    },
-    reducers: {
-      ...sum.reducers,
-      ...item.reducers
-    },
-    effects: {
-      ...sum.effects,
-      ...item.effects
-    },
-    subscriptions: {
-      ...sum.subscriptions,
-      ...item.subscriptions
-    }
-  }), {} );
+import { modelSingle, dispatchesSingle } from "./src/modelSingle";
+import { modelSwitch, dispatchesSwitch } from "./src/modelSwitch";
+import combineModels from "./src/combineModels";
 
 export {
-    createSingleStateModel,
-    createSwitchModel,
-    combineModels,
+  combineModels,
+  modelSingle,
+  dispatchesSingle,
+  modelSwitch,
+  dispatchesSwitch
 };
